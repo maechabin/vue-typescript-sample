@@ -1,20 +1,24 @@
 <template>
   <div id="app">
     <img src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>
+    <HelloVue val="Vue" v-on:handle-click="handleClickButton($event)" />
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import HelloWorld from './components/HelloWorld.vue';
+import HelloVue from './components/HelloVue.vue';
 
 @Component({
   components: {
-    HelloWorld,
+    HelloVue,
   },
 })
-export default class App extends Vue {}
+export default class App extends Vue {
+  handleClickButton($event: string) {
+    console.log($event);
+  }
+}
 </script>
 
 <style lang="scss">
