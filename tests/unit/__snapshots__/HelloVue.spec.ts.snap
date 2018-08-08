@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`HelloVue.vue snapshot HelloVue 1`] = `
+<div>
+  <h1>Hello </h1>
+  <input type="text">
+  <button disabled="disabled">button</button>
+</div>
+`;
