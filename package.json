@@ -7,6 +7,8 @@
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
     "test:unit": "vue-cli-service test:unit"
+    "vuetype": "vuetype src/components",
+    "vuetype:w": "vuetype -w src/components"
   },
   "dependencies": {
     "vue": "^2.5.16",
@@ -27,5 +29,6 @@
     "ts-jest": "^23.0.0",
     "typescript": "^3.0.0",
     "vue-template-compiler": "^2.5.16"
+    "vuetype": "^0.3.2"
   }
 }
