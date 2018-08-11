@@ -7,7 +7,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Emit, Vue } from 'vue-property-decorator';
+import { Component, Prop, Emit, Watch, Vue } from 'vue-property-decorator';
 
 @Component
 export default class HelloVue extends Vue {
@@ -16,7 +16,13 @@ export default class HelloVue extends Vue {
 
   /** emit */
   @Emit('handle-click')
-  clickButton(val: string) {}
+  clickButton(val: string): void {}
+
+  /** watch */
+  @Watch('value')
+  onValueChange(newValue: string, oldValue: string): void {
+    console.log(`watch: ${newValue}, ${oldValue}`);
+  }
 
   /** data */
   value: string = this.val;

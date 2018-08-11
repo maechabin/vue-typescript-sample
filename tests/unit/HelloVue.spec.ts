@@ -1,9 +1,8 @@
 import { Wrapper, shallowMount } from '@vue/test-utils';
-import HelloVueComonent from '@/components/HelloVue.vue.d';
 import HelloVue from '@/components/HelloVue.vue';
 
 describe('HelloVue.vue', () => {
-  let wrapper: Wrapper<HelloVueComonent>;
+  let wrapper: Wrapper<HelloVue>;
 
   it('props', () => {
     const val = 'Vue';
@@ -58,11 +57,26 @@ describe('HelloVue.vue', () => {
     });
   });
 
+  describe('watch', () => {
+    it('onValueChange', () => {
+      wrapper = shallowMount(HelloVue, {
+        propsData: { val: 'AAA' },
+      });
+      const spy = jest.spyOn(console, 'log');
+      wrapper.setData({ value: 'BBB' });
+
+      expect(wrapper.vm.value).toBe('BBB');
+      expect(spy).toHaveBeenCalledWith('watch: BBB, AAA');
+      spy.mockClear();
+    });
+  });
+
   describe('mounted', () => {
     it('console.log', () => {
       const spy = jest.spyOn(console, 'log');
       shallowMount(HelloVue);
       expect(spy).toHaveBeenCalled();
+      spy.mockClear();
     });
   });
 
