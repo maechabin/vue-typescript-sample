@@ -11,7 +11,7 @@ describe('HelloVue.vue', () => {
     });
 
     expect(wrapper.props().val).toBe(val);
-    expect(wrapper.text()).toMatch(`Hello ${val}`);
+    expect(wrapper.text()).toMatch(`Hello VUE`);
   });
 
   it('dom', () => {
@@ -121,6 +121,17 @@ describe('HelloVue.vue', () => {
       expect(wrapper.vm.value).toBe('AAA');
       expect(wrapper.vm.inputValue).toBe('');
       expect(spy).toHaveBeenCalledWith('handle-click', 'AAA');
+    });
+  });
+
+  describe('filter', () => {
+    it('convertUpperCase', () => {
+      wrapper = shallowMount(HelloVue, {
+        propsData: { val: '' },
+      });
+      wrapper.setData({ value: 'Bbb' });
+      const received = wrapper.find('h1').text();
+      expect(received).toBe('Hello BBB');
     });
   });
 

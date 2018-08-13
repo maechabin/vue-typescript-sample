@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>Hello {{ value }}</h1>
+    <h1>Hello {{ value | convertUpperCase }}</h1>
     <input type="text" v-bind:value="inputValue" v-on:input="handleInput($event)" />
     <button v-on:click="handleClick()" v-bind:disabled="isDisabled">button</button>
   </div>
@@ -9,7 +9,15 @@
 <script lang="ts">
 import { Component, Prop, Emit, Watch, Vue } from 'vue-property-decorator';
 
-@Component
+@Component({
+  /** filters */
+  filters: {
+    convertUpperCase(value: string) {
+      if (!value) return;
+      return value.toUpperCase();
+    },
+  },
+})
 export default class HelloVue extends Vue {
   /** props */
   @Prop() private val!: string;
