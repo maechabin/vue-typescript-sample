@@ -12,8 +12,8 @@ import { Component, Prop, Emit, Watch, Vue } from 'vue-property-decorator';
 @Component({
   /** filters */
   filters: {
-    convertUpperCase(value: string) {
-      if (!value) return;
+    convertUpperCase(value: string): string | null {
+      if (!value) return null;
       return value.toUpperCase();
     },
   },
@@ -37,7 +37,7 @@ export default class HelloVue extends Vue {
   inputValue: string = '';
 
   /** lifecylce hook */
-  mounted() {
+  mounted(): void {
     console.log('mounted');
   }
 
@@ -46,7 +46,7 @@ export default class HelloVue extends Vue {
     return this.inputValue === '';
   }
 
-  /** method */
+  /** methods */
   handleInput($event: any): void {
     this.inputValue = $event.target.value;
   }
