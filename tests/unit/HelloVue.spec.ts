@@ -2,9 +2,10 @@ import { Wrapper, shallowMount } from '@vue/test-utils';
 import HelloVue from '@/components/HelloVue.vue';
 
 describe('HelloVue.vue', () => {
+  /** ラッパー変数の宣言 */
   let wrapper: Wrapper<HelloVue>;
 
-  it('props', () => {
+  it('propsで受け取る値のテスト', () => {
     const val = 'Vue';
     wrapper = shallowMount(HelloVue, {
       propsData: { val },
@@ -14,7 +15,7 @@ describe('HelloVue.vue', () => {
     expect(wrapper.text()).toMatch(`Hello VUE`);
   });
 
-  it('dom', () => {
+  it('描画されるDOMのテスト', () => {
     wrapper = shallowMount(HelloVue);
 
     expect(wrapper.contains('h1')).toBeTruthy();
@@ -22,24 +23,24 @@ describe('HelloVue.vue', () => {
     expect(wrapper.contains('button')).toBeTruthy();
   });
 
-  it('button: v-bind:disabled', () => {
+  it('ボタンの非活性のテスト', () => {
     wrapper = shallowMount(HelloVue);
     wrapper.setData({ inputValue: '' });
     expect(wrapper.find('button').element.getAttribute('disabled')).toBeTruthy();
   });
 
-  describe('event', () => {
+  describe('イベントのテスト', () => {
     beforeEach(() => {
       wrapper = shallowMount(HelloVue);
     });
 
-    it('should call handleInput', () => {
+    it('テキスト入力時にhandleInputが呼ばれるかテスト', () => {
       const spy = jest.spyOn(wrapper.vm, 'handleInput');
       wrapper.find('input').trigger('input');
       expect(spy).toHaveBeenCalled();
     });
 
-    it('should call hancleClick', () => {
+    it('ボタン押下時にhandleClickが呼ばれるかテスト', () => {
       const spy = jest.spyOn(wrapper.vm, 'handleClick');
       wrapper.setData({ inputValue: 'AAA' });
       wrapper.find('button').trigger('click');
@@ -47,7 +48,7 @@ describe('HelloVue.vue', () => {
       expect(spy).toHaveBeenCalled();
     });
 
-    it('should not call handleClick', () => {
+    it('入力なしの状態でhandleClickが呼ばれないかテスト', () => {
       wrapper = shallowMount(HelloVue);
       const spy = jest.spyOn(wrapper.vm, 'handleClick');
       wrapper.setData({ inputValue: '' });
@@ -57,8 +58,8 @@ describe('HelloVue.vue', () => {
     });
   });
 
-  describe('watch', () => {
-    it('onValueChange', () => {
+  describe('watcherのテスト', () => {
+    it('valueの値が変更された時にwatchが機能するかテスト', () => {
       wrapper = shallowMount(HelloVue, {
         propsData: { val: 'AAA' },
       });
@@ -71,8 +72,8 @@ describe('HelloVue.vue', () => {
     });
   });
 
-  describe('mounted', () => {
-    it('console.log', () => {
+  describe('Lifecycle Hookのテスト', () => {
+    it('マウント時に mountedが機能するかテスト', () => {
       const spy = jest.spyOn(console, 'log');
       shallowMount(HelloVue);
       expect(spy).toHaveBeenCalled();
@@ -80,19 +81,19 @@ describe('HelloVue.vue', () => {
     });
   });
 
-  describe('computed: isDisabled', () => {
+  describe('computedのテスト', () => {
     beforeEach(() => {
       wrapper = shallowMount(HelloVue);
     });
 
-    it('sholud be true', () => {
+    it('isDisabledがtrueを返すかテスト', () => {
       wrapper.setData({ inputValue: '' });
       const disabled = wrapper.vm.isDisabled;
 
       expect(disabled).toBeTruthy();
     });
 
-    it('sholud be false', () => {
+    it('isDisabledがfalseを返すかテスト', () => {
       wrapper.setData({ inputValue: 'AAA' });
       const disabled = wrapper.vm.isDisabled;
 
@@ -100,12 +101,12 @@ describe('HelloVue.vue', () => {
     });
   });
 
-  describe('method', () => {
+  describe('methodのテスト', () => {
     beforeEach(() => {
       wrapper = shallowMount(HelloVue);
     });
 
-    it('handleInput', () => {
+    it('handleInputメソッドのテスト', () => {
       const event = {
         target: { value: 'AAA' },
       };
@@ -113,7 +114,7 @@ describe('HelloVue.vue', () => {
       expect(wrapper.vm.inputValue).toBe('AAA');
     });
 
-    it('handleClick', () => {
+    it('handleClickメソッドのテスト', () => {
       wrapper.setData({ inputValue: 'AAA' });
       const spy = jest.spyOn(wrapper.vm, '$emit');
       wrapper.vm.handleClick();
@@ -124,8 +125,8 @@ describe('HelloVue.vue', () => {
     });
   });
 
-  describe('filter', () => {
-    it('convertUpperCase', () => {
+  describe('filtersのテスト', () => {
+    it('アッパーケースに変換されるかテスト', () => {
       wrapper = shallowMount(HelloVue, {
         propsData: { val: '' },
       });
@@ -135,8 +136,8 @@ describe('HelloVue.vue', () => {
     });
   });
 
-  describe('snapshot', () => {
-    it('HelloVue', () => {
+  describe('スナップショットテスト', () => {
+    it('HelloVueテンプレートのスナップショット', () => {
       wrapper = shallowMount(HelloVue);
       expect(wrapper.html()).toMatchSnapshot();
     });
