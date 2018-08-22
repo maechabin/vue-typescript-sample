@@ -4,6 +4,8 @@ export default class HelloVue extends Vue {
     private val;
     /** emit */
     clickButton(val: string): void;
+    /** watch */
+    onValueChange(newValue: string, oldValue: string): void;
     /** data */
     value: string;
     inputValue: string;
@@ -11,7 +13,7 @@ export default class HelloVue extends Vue {
     mounted(): void;
     /** computed */
     readonly isDisabled: boolean;
-    /** method */
+    /** methods */
     handleInput($event: any): void;
     handleClick(): void;
 }
