@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "files": ["./src/vue-shims.d.ts"],
     "target": "esnext",
     "module": "esnext",
     "strict": true,
@@ -10,11 +11,9 @@
     "esModuleInterop": true,
     "sourceMap": true,
     "baseUrl": ".",
-    "types": ["node", "jest"],
     "paths": {
       "@/*": ["src/*"]
-    },
-    "lib": ["es2015", "dom", "dom.iterable", "scripthost"]
+    }
   },
   "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.vue", "tests/**/*.ts", "tests/**/*.tsx"],
   "exclude": ["node_modules"]
