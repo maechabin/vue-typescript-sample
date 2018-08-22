@@ -18,18 +18,20 @@
     "vuex": "^3.0.1"
   },
   "devDependencies": {
-    "@types/jest": "^23.1.4",
-    "@vue/cli-plugin-babel": "^3.0.0-rc.10",
-    "@vue/cli-plugin-typescript": "^3.0.0-rc.10",
-    "@vue/cli-plugin-unit-jest": "^3.0.0-rc.10",
-    "@vue/cli-service": "^3.0.0-rc.10",
-    "@vue/test-utils": "^1.0.0-beta.20",
+    "@types/jest": "^23.3.1",
+    "@types/node": "^10.7.1",
+    "@vue/cli-plugin-babel": "^3.0.1",
+    "@vue/cli-plugin-typescript": "^3.0.1",
+    "@vue/cli-plugin-unit-jest": "^3.0.1",
+    "@vue/cli-service": "^3.0.1",
+    "@vue/test-utils": "^1.0.0-beta.24",
     "babel-core": "7.0.0-bridge.0",
     "node-sass": "^4.9.0",
     "sass-loader": "^7.0.1",
-    "ts-jest": "^23.0.0",
+    "ts-jest": "^23.1.3",
     "typescript": "^3.0.0",
-    "vue-template-compiler": "^2.5.16",
+    "vue-template-compiler": "^2.5.17",
+    "vue-ts-plugin": "^0.1.0",
     "vuetype": "^0.3.2"
   }
 }
