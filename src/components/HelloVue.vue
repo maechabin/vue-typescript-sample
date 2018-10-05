@@ -8,6 +8,7 @@
 
 <script lang="ts">
 import { Component, Prop, Emit, Watch, Vue } from 'vue-property-decorator';
+import { InputType } from 'zlib';
 
 @Component({
   /** filters */
@@ -20,7 +21,8 @@ import { Component, Prop, Emit, Watch, Vue } from 'vue-property-decorator';
 })
 export default class HelloVue extends Vue {
   /** props */
-  @Prop() private val!: string;
+  @Prop()
+  private val!: string;
 
   /** emit */
   @Emit('handle-click')
@@ -47,8 +49,8 @@ export default class HelloVue extends Vue {
   }
 
   /** methods */
-  handleInput($event: any): void {
-    this.inputValue = $event.target.value;
+  handleInput($event: Event): void {
+    this.inputValue = ($event.target as HTMLInputElement).value;
   }
   handleClick(): void {
     if (this.inputValue === '') {

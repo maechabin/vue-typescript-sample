@@ -148,7 +148,7 @@ describe('HelloVue.vue', () => {
       // 準備
       const event = {
         target: { value: 'AAA' },
-      };
+      } as any;
 
       // 実行
       wrapper.vm.handleInput(event);

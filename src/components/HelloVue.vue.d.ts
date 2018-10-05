@@ -14,6 +14,6 @@ export default class HelloVue extends Vue {
     /** computed */
     readonly isDisabled: boolean;
     /** methods */
-    handleInput($event: any): void;
+    handleInput($event: Event): void;
     handleClick(): void;
 }
