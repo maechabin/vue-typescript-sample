@@ -14,7 +14,9 @@ import { InputType } from 'zlib';
   /** filters */
   filters: {
     convertUpperCase(value: string): string | null {
-      if (!value) return null;
+      if (!value) {
+        return null;
+      }
       return value.toUpperCase();
     },
   },
@@ -22,11 +24,17 @@ import { InputType } from 'zlib';
 export default class HelloVue extends Vue {
   /** props */
   @Prop()
-  private val!: string;
+  val!: string;
+
+  /** data */
+  value: string = this.val;
+  inputValue: string = '';
 
   /** emit */
   @Emit('handle-click')
-  clickButton(val: string): void {}
+  clickButton(val: string): void {
+    //
+  }
 
   /** watch */
   @Watch('value')
@@ -34,23 +42,19 @@ export default class HelloVue extends Vue {
     console.log(`watch: ${newValue}, ${oldValue}`);
   }
 
-  /** data */
-  value: string = this.val;
-  inputValue: string = '';
-
-  /** lifecylce hook */
-  mounted(): void {
-    console.log('mounted');
-  }
-
   /** computed */
   get isDisabled(): boolean {
     return this.inputValue === '';
   }
 
+  /** lifecycle hook */
+  mounted(): void {
+    console.log('mounted');
+  }
+
   /** methods */
   handleInput($event: Event): void {
-    this.inputValue = ($event.target as HTMLInputElement).value;
+    this.inputValue = (($event.target as any) as HTMLInputElement).value;
   }
   handleClick(): void {
     if (this.inputValue === '') {
